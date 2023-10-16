@@ -1,18 +1,24 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./App.module.css";
 import Form from "./components/contactForm/ContactsForm";
 import ContactList from "./components/contactList/ContactList";
 import Filter from "./components/filter/Filter";
-import { filterContacts } from "./components/serveces/filterContacts";
-import { getContacts, getFilter } from "./components/redux/selectors";
+
+import {
+  selectFilteredContacts,
+  selectIsLoading,
+} from "./components/redux/selectors";
+import { useEffect } from "react";
+import { fetchContacts } from "./components/redux/operations";
 
 export const App = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const displayContacts = useSelector(selectFilteredContacts);
+  const isLoading = useSelector(selectIsLoading);
 
-  const displayedContacts = filter
-    ? filterContacts(contacts, filter)
-    : contacts;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -24,8 +30,10 @@ export const App = () => {
         <section className={css.section}>
           <h2>Contacts</h2>
           <Filter />
-          {displayedContacts.length > 0 ? (
-            <ContactList displayedContacts={displayedContacts} />
+          {isLoading ? (
+            <p>Loading</p>
+          ) : displayContacts.length > 0 ? (
+            <ContactList displayedContacts={displayContacts} />
           ) : (
             <p> No contacts </p>
           )}

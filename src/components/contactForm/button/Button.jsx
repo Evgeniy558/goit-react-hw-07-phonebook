@@ -1,11 +1,12 @@
 import css from "./button.module.css";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/slices/contactsSlice";
+import { deleteContact } from "../../redux/operations";
 
-const Button = ({ children, typeButton, idButton }) => {
+const Button = ({ children, typeButton, contact }) => {
   const dispatch = useDispatch();
   const handleDeleteContact = (id) => {
+    console.log("delID", id);
     dispatch(deleteContact(id));
   };
 
@@ -20,9 +21,13 @@ const Button = ({ children, typeButton, idButton }) => {
     <div className={css.wrapper}>
       <button
         className={`${css.button} ${classButton}`}
-        onClick={() => {
-          handleDeleteContact(idButton);
-        }}
+        onClick={
+          typeButton === "button_del"
+            ? () => {
+                handleDeleteContact(contact.id);
+              }
+            : null
+        }
       >
         {children}
       </button>
@@ -32,6 +37,6 @@ const Button = ({ children, typeButton, idButton }) => {
 
 Button.propTypes = {
   typeButton: PropTypes.string.isRequired,
-  idButton: PropTypes.string,
+  contact: PropTypes.object,
 };
 export default Button;

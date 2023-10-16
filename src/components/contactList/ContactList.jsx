@@ -9,12 +9,11 @@ const ContactList = ({ displayedContacts }) => {
         return (
           <li key={el.id} className={css.list_item}>
             <div className={css.container_info}>
-              {el.name}: {el.number}
+              {el.name}: {el.phone}
             </div>
             <Button
               className={css.align_btn}
-              type="button"
-              idButton={el.id}
+              contact={el}
               typeButton={"button_del"}
             >
               Delete
