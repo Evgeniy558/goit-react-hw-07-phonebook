@@ -1,4 +1,4 @@
-import Button from "../button/Button";
+import Button from "../../components/contactForm/button/Button";
 import css from "./ContactList.module.css";
 import PropTypes from "prop-types";
 

@@ -1,7 +1,7 @@
 import css from "./button.module.css";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/operations";
+import { deleteContact } from "../../../redux/operations";
 
 const Button = ({ children, typeButton, contact }) => {
   const dispatch = useDispatch();

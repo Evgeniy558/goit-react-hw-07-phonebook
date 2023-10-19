@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import css from "./ContactsForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectContacts } from "../../redux/selectors";
-import Button from "../button/Button";
+import Button from "./button/Button";
 import { addContact } from "../../redux/operations";
 
 const patternName = "^[a-zA-Z]+(([' \u2013][a-zA-Z])?[a-zA-Z]*)*$";
