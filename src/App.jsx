@@ -4,12 +4,9 @@ import Form from "./components/contactForm/ContactsForm";
 import ContactList from "./components/contactList/ContactList";
 import Filter from "./components/filter/Filter";
 
-import {
-  selectFilteredContacts,
-  selectIsLoading,
-} from "./components/redux/selectors";
+import { selectFilteredContacts, selectIsLoading } from "./redux/selectors";
 import { useEffect } from "react";
-import { fetchContacts } from "./components/redux/operations";
+import { fetchContacts } from "./redux/operations";
 
 export const App = () => {
   const displayContacts = useSelector(selectFilteredContacts);
