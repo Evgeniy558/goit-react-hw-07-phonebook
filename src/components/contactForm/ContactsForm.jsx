@@ -14,7 +14,6 @@ const Form = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    ev.stopPropagation();
     const form = ev.target;
     const name = form.elements.name.value;
     const phone = form.elements.number.value;
